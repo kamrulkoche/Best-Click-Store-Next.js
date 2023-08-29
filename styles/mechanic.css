@@ -1,0 +1,214 @@
+/* body{
+    background-color: rgb(165 243 252);
+}
+
+.container{
+    width: 90%;
+    margin: 0 auto;
+}
+
+.nav:active{
+    color: green;
+}
+
+.navbody{
+    height: 100%;
+    width: 100%;
+    position: relative;
+}
+
+.navigation{
+    height: 100%;
+    width: 20%;
+    float: left;
+    background-color: rgb(103 232 249);
+}
+
+.navigation ul{
+    width: 100%;
+    float: left;
+}
+
+.navigation ul li{
+    padding: 10px;
+    display: block;
+    
+}
+
+.navigation ul li:hover{
+    background-color: rgb(6 182 212);
+    
+}
+
+.maincontent{
+    height: 100%;
+    width: 80%;
+    float: left;
+    position: relative;
+}
+
+.backbutton{
+    display: flex;
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+} */
+/*
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+Body designing start from here 
+*/
+
+#body {
+    width: 100%;
+    height: 100%;
+    background-color: rgb(103 232 249);
+    padding: 40px 0;
+    justify-content: center;
+    /* for puting all the child div at the center of parent div */
+    display: flex;
+}
+
+
+
+
+
+
+
+/*
+Body designing end here 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+*/
+
+
+/*
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+Form designing start from here 
+*/
+
+#form {
+    color: black;
+    padding: 40px 80px;
+    width: 100%;
+    border-radius: 12px;
+    /*  0.75rem*/
+    background-image: linear-gradient(to right, rgb(45 212 191), rgb(6 182 212));
+}
+
+#form h1 {
+    padding: 20px;
+    font-size: 36px;
+    /* 2.25rem */
+    line-height: 40px;
+    /* 2.5rem */
+}
+
+#form input[type="text"],
+input[type="password"],
+input[type="file"],
+input[type="email"] {
+    margin-top: 9px;
+    width: 320px;
+}
+
+#form .login input[type="text"],
+input[type="password"] {
+    margin-top: 9px;
+    width: 280px;
+}
+
+.input {
+    @apply input-bordered;
+    @apply max-w-xs;
+}
+
+#form label {
+    display: block;
+    margin-top: 9px;
+}
+
+#form #gen {
+    display: inline;
+}
+
+#form a {
+    color: rgba(43, 13, 211, 0.767);
+    font-size: 20px;
+}
+
+#form a:hover {
+    text-decoration: underline;
+}
+
+#form .error {
+    color: rgb(185, 8, 2);
+    width: 320px;
+}
+
+#form .success {
+    color: rgb(13, 167, 26);
+}
+
+#form button {
+    background-color: rgb(50, 230, 236);
+    border: none;
+    margin: 20px;
+}
+
+#form button:hover {
+    background-color: rgb(64, 219, 224);
+}
+
+#form .message {
+    color: black;
+    width: 320px;
+}
+
+
+/*
+Form designing end here 
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////// 
+*/
+
+
+.mechanic #form {
+    color: black;
+    padding: 40px 80px;
+    width: 100%;
+    border-radius: 12px;/*  0.75rem*/
+    background-image: none;
+}
+
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 4px;
+}
+
+.item {
+    padding: 4px;
+}
+
+
+.profile a {
+    color: blue;
+    font-size: 18px;
+}
+
+.profile a:hover {
+    color: blue;
+    text-decoration: underline;
+}
+
+
+
+.navigation {
+    height: 100%;
+}
+
+#editprofile {
+    height: 100%;
+    width: 40%;
+    background-color: blue;
+    border-radius: 2%;
+    margin-top: 20px;
+}
