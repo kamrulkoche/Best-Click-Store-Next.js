@@ -19,12 +19,12 @@ export default function Registration() {
     const[profile,setProfile]= useState('');
 
     const[nameError,setNameError]= useState('');
-    // const[email,setEmail]=useState('');
-    // const[address,setAddress]=useState('');
-    // const[phone,setPhone]=useState('');
-    // const [password, setPassword] = useState('');
-    // const[gender,setGender]= useState('');
-    // const[profile,setProfile]= useState('');
+    const[emailError,setEmailError]=useState('');
+    const[addresserror,setAddressError]=useState('');
+    const[phoneerror,setPhoneError]=useState('');
+    const [passworderror, setPasswordError] = useState('');
+    const[gendererror,setGenderError]= useState('');
+    const[profileerror,setprofileerror]= useState('');
     const [error, setError] = useState('');
     const [success, setSuccess] = useState('');
     const router = useRouter();
@@ -54,22 +54,91 @@ export default function Registration() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        let isValidForm = true;
+        let formIsValid = true;
         // Perform form validation
         if(!name){
             setNameError("Name is required");
-            isValidForm =false;
+            formIsValid =false;
         }
-        // else if(!isValidName(name)){
-        //     setNameError("Name is required");
-        //     isValidForm =false;
-        // }
-        else{
+        else {
             setNameError('');
         }
 
+        // email validation
+        if (!email) {
+            setEmailError('Email is required');
+            formIsValid = false;
+        }
+        else if (!isValidEmail(email)) {
+            setEmailError('Invalid email address');
+            formIsValid = false;
+        }
+        else {
+            setEmailError('');
+        }
+
+        // phone validation
+        if (!phone) {
+            setPhoneError('Phone is required');
+            formIsValid = false;
+        }
+        else if (!isValidPhone(phone)) {
+            setPhoneError('Please enter a valid 11 digit Phone number');
+            formIsValid = false;
+        }
+        else {
+            setPhoneError('');
+        }
+
+
+
         
-        if(isValidForm){
+
+        // gender validation
+        if (!gender) {
+            setGenderError('Gender is required');
+            formIsValid = false;
+        }
+        else {
+            setGenderError('');
+        }
+
+        //address validation
+        if (!address) {
+            setAddressError('Address is required');
+            formIsValid = false;
+        }
+        else {
+            setAddressError('');
+        }
+
+
+        //password validatio
+        if (!password) {
+            setPasswordError('Password is required');
+            formIsValid = false;
+        }
+        else if (!isValidPassword(password)) {
+            setPasswordError(`Password Must contain: \n1. At least 8 characters \n2. One upper letter [A-Z] \n3. One lower letter [a-z] \n4. One digit [0-9] \n5. One special character [@$!%*?&] `);
+            formIsValid = false;
+        }
+        else {
+            setPasswordError('');
+        }
+
+
+        if (!profile) {
+            setprofileerror('Profile picture is required');
+            formIsValid = false;
+        }
+
+        else {
+            setprofileerror('');
+        }
+    
+        
+        
+        if(formIsValid){
             const res = await doRegistration( );
             console.log(res);
         }
@@ -114,10 +183,27 @@ export default function Registration() {
         return emailPattern.test(email);
     }
     
-    const validatePhone = phone => {
-        const phonePattern = /^[0-9]{10}$/;
+    const isValidName = (name) => {
+        const namePattern = /^[a-zA-Z][a-zA-Z\-\.\s]{1,150}$/;
+        return namePattern.test(name);
+    }
+
+
+
+    const isValidPhone = (phone) => {
+        const phonePattern = /^[0][1][3-9][0-9]{8}$/;
         return phonePattern.test(phone);
-      };
+    }
+
+
+
+    const isValidPassword = (password) => {
+        const phonePattern = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+        return phonePattern.test(password);
+    }
+
+
+
 
     
 
@@ -138,6 +224,7 @@ export default function Registration() {
                     <td>
                     <label for="name">Name:</label>
                     &nbsp;<input type="text" placeholder="Name" className="input input-bordered input-secondary w-full max-w-xs"  name="name" id="name" onChange={handleChangeName}></input>
+                    <br />{nameError && <div className="error">{nameError}</div>}
                     </td>
                 </tr>
                 <br></br>
@@ -145,6 +232,7 @@ export default function Registration() {
                     <td>
                     <label for="email">Email:</label>
                     &nbsp; <input type="text" placeholder="Email" className="input input-bordered input-secondary w-full max-w-xs"  name="email" id="email" onChange={handleChangeEmail}></input>
+                    <br />{emailError && <div className="error">{emailError}</div>}
                     </td>
 
                 </tr>
@@ -154,21 +242,21 @@ export default function Registration() {
                 <td>
                     <label for="address">Address:</label>
                     &nbsp;< input type="text" placeholder="Address" className="input input-bordered input-secondary w-full max-w-xs" name="address" id="address" value={address} onChange={handleChangeAddress} ></input>
-                </td>
+                    <br />{addresserror && <div className="error">{addresserror}</div>} </td>
                </tr>
                <br></br>
                <tr>
                     <td>
                     <label for="phone">Phone:</label>
                     &nbsp;<input type="text" placeholder="Phone" className="input input-bordered input-secondary w-full max-w-xs" name="phone" id="phone" value={phone} onChange={handleChangePhone}></input>
-                    </td>
+                    <br />{phoneerror && <div className="error">{phoneerror}</div>}</td>
                </tr>
                <br></br>
                 <tr>
                     <td>
                     <label for="password">Password:</label>
                     &nbsp;<input type="text" placeholder="Password" className="input input-bordered input-secondary w-full max-w-xs" name="password" id="password" value={password} onChange={handleChangePassword}></input>
-                    </td>
+                    <br />{passworderror && <div className="error">{passworderror}</div>}</td>
                 </tr>
                 <br></br>
                <tr>
@@ -192,7 +280,7 @@ export default function Registration() {
                         onChange={handleChangeGender}
                         />
                         others</label>
-                       
+                        <br />{gendererror && <div className="error">{gendererror}</div>}
 
                     </td>
                </tr>
@@ -201,7 +289,7 @@ export default function Registration() {
                     <td>
                     <label for="profile">Profile picture:</label>
                     &nbsp;<input type="file" name="profile" id="profile" onChange={handleChangeProfile}></input>
-                    
+                    <br />{profileerror && <div className="error">{profileerror}</div>}
                     </td>
 
                     

@@ -38,7 +38,7 @@ export default function Home() {
             </tr>
             <tr>
                     <td  align="center">
-                        <input type="submit" value="change"></input>
+                        <input type="submit" className="text-red-400" value="change"></input>
                     </td>
             </tr>
             </form>

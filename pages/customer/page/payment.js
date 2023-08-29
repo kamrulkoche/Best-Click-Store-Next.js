@@ -109,10 +109,10 @@ export default function Home() {
 
         if (formIsValid) {
             try {
-                if(await addPayment()){
-                    alert("payment successfull")
-                    router.push('./orders');
-                }
+                addPayment()
+                alert("Your order has been placed successfully")
+                router.push('./orders');
+                
 
                 
             }
@@ -143,6 +143,7 @@ export default function Home() {
                 withCredentials:true
             });
             console.log(response);
+
             
 
         }
@@ -196,7 +197,7 @@ export default function Home() {
                             {success && <b className="text-green-500">{success}</b>}<br/>
 
 
-                            <p align="center"><input type="submit" className="btn btn-warning my-4" name="Edit" value="Edit"></input></p>
+                            <p align="center"><input type="submit" className="btn btn-warning my-4" name="confirm" value="Confirm Order"></input></p>
                         </div>
 
                     </form>
